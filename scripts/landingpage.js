@@ -1,2 +1,2 @@
-const hello = React.createElement("h1", {}, "Hello Kent ");
+const hello = <h1>Hello React</h1>;
 ReactDOM.render(hello, document.getElementById("root"));
