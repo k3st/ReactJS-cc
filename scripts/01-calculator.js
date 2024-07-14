@@ -26,7 +26,7 @@ function Calculator() {
 
   function handleOperator(value) {
     console.log("func op ", value);
-    alert("click");
+    // alert("click");
     const total = doCalculation();
 
     setCalc({

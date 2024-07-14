@@ -13,11 +13,11 @@ body {
   height: calc(60vw * 5 / 3); /* Aspect ratio 3:5 */
   max-height: 80vh;
   max-width: calc(80vh * 3 / 5); /* Maintain aspect ratio within max height */
-  background-color: lightyellow;
+  background-color: darkgray;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2%;
+  padding: 5%;
   box-sizing: border-box;
 }
 
