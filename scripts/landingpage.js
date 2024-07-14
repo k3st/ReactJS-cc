@@ -58,22 +58,22 @@ function Calculator() {
   }
 
   function doCalculation() {
-    let total = parseInt(calc.total);
+    let total = parseFloat(calc.total);
     switch (calc.preOp) {
       case "+":
-        total += parseInt(calc.current);
+        total += parseFloat(calc.current);
         break;
       case "-":
-        total -= parseInt(calc.current);
+        total -= parseFloat(calc.current);
         break;
       case "*":
-        total *= parseInt(calc.current);
+        total *= parseFloat(calc.current);
         break;
       case "/":
-        total /= parseInt(calc.current);
+        total /= parseFloat(calc.current);
         break;
       default:
-        total = parseInt(calc.current);
+        total = parseFloat(calc.current);
     }
 
     return total;

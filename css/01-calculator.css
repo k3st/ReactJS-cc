@@ -1,29 +1,71 @@
-.app-container{
-    width: 400px;
-    height: 400px;
-}
-.calculator{
-    display: grid;
-    grid-template-columns: repeat(4,50px);
-}
-
-.display{
-    grid-column-start: 1;
-    grid-column-end: 5;
-    height: 40px;
-    font-size: 30px;
-    text-align: right;
-    border: 1px solid black;
-    padding-right: 10px;
-    padding-top: 5px;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+  font-size: xx-large;
 }
 
-button{
-    height: 50px;
-    background-color: white;
-    border: 1px solid lightgray;
+.app-container {
+  width: 60vw;
+  height: calc(60vw * 5 / 3); /* Aspect ratio 3:5 */
+  max-height: 80vh;
+  max-width: calc(80vh * 3 / 5); /* Maintain aspect ratio within max height */
+  background-color: lightyellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+  box-sizing: border-box;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 2%;
+  width: 100%;
+  height: 100%;
+}
+
+.display {
+  grid-column: 1 / -1;
+  height: 80%;
+  text-align: right;
+  border: 1px solid black;
+  margin-top: 5%;
+  padding: 10% 5% 10% 5%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: white;
+  border: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1%;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  font-size: xx-large;
 }
 
 button.operator {
-    background-color: lightslategray;
+  background-color: lightslategray;
+  color: white;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .app-container {
+    width: 90vw;
+    height: calc(90vw * 5 / 3); /* Maintain aspect ratio */
+  }
 }
