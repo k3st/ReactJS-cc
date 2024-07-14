@@ -5,15 +5,79 @@ function Calculator() {
   const [calc, setCalc] = React.useState({
     current: "0",
     total: "0",
+    isInitial: true,
+    preOp: "",
   });
+
   function handleNumber(value) {
     let newValue = value;
 
-    newValue = calc.current + value;
+    if (!calc.isInitial) {
+      newValue = calc.current + value;
+    }
 
-    setCalc({ current: newValue, total: calc.total });
+    setCalc({
+      current: newValue,
+      total: calc.total,
+      isInitial: false,
+      preOp: calc.preOp,
+    });
   }
-  function handleOperator() {}
+
+  function handleOperator(value) {
+    console.log("func op ", value);
+    alert("click");
+    const total = doCalculation();
+
+    setCalc({
+      current: total.toString(),
+      total: total.toString(),
+      isInitial: true,
+      preOp: value,
+    });
+  }
+
+  function handleClear() {
+    setCalc({
+      current: "0",
+      total: "0",
+      isInitial: true,
+      preOp: "",
+    });
+  }
+
+  function handleEquals() {
+    let total = doCalculation();
+
+    setCalc({
+      current: total.toString(),
+      total: total.toString(),
+      isInitial: true,
+      preOp: "",
+    });
+  }
+
+  function doCalculation() {
+    let total = parseInt(calc.total);
+    switch (calc.preOp) {
+      case "+":
+        total += parseInt(calc.current);
+        break;
+      case "-":
+        total -= parseInt(calc.current);
+        break;
+      case "*":
+        total *= parseInt(calc.current);
+        break;
+      case "/":
+        total /= parseInt(calc.current);
+        break;
+      default:
+        total = parseInt(calc.current);
+    }
+
+    return total;
+  }
 
   function renderDisplay() {
     return calc.current;
@@ -36,9 +100,9 @@ function Calculator() {
       <CalcButton value="3" onClick={handleNumber} />
       <CalcButton className="operator" value="-" onClick={handleOperator} />
 
-      <CalcButton value="C" onClick={handleOperator} />
+      <CalcButton value="C" onClick={handleClear} />
       <CalcButton value="0" onClick={handleNumber} />
-      <CalcButton value="=" onClick={handleOperator} />
+      <CalcButton value="=" onClick={handleEquals} />
       <CalcButton className="operator" value="+" onClick={handleOperator} />
     </div>
   );
@@ -55,7 +119,7 @@ function CalcButton(property) {
 }
 
 ReactDOM.render(
-  <div classname="app-container">
+  <div className="app-container">
     <Calculator />
   </div>,
   document.getElementById("root")
