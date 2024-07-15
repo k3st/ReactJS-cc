@@ -13,4 +13,17 @@
   height: 100px;
   margin: 10px;
   border-radius: 100px;
+  border: 2px solid black;
+}
+
+.idle {
+  background-color: yellow;
+}
+
+.player_1 {
+  background-color: blue;
+}
+
+.player_2 {
+  background-color: red;
 }
