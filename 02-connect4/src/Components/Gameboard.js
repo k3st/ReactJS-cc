@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import GameCircle from "./GameCircle";
 import "../Game.css";
 
+const NO_CIRCLES = 16;
+
 const NO_PLAYER = 0;
 const PLAYER_1 = 1;
 const PLAYER_2 = 2;
@@ -11,20 +13,28 @@ const GameBoard = () => {
   const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
 
   // console.log(gameBoard);
-  const renderBlock = () => {
+  const renderBoard = () => {
     const circles = [];
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < NO_CIRCLES; i++) {
       circles.push(renderCircle(i));
     }
     return circles;
   };
   const circleClicked = (id) => {
-    console.log("circle clicked: " + id);
+    // console.log("circle clicked: " + id);
+    // const board = [...gameBoard];
+    // board[id] = currentPlayer;
+    // setGameBoard(board);
+    // setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1);
 
-    const board = [...gameBoard];
+    // //  Second Method // //
 
-    board[id] = currentPlayer;
-    setGameBoard(board);
+    setGameBoard((prev) => {
+      return prev.map((circle, pos) => {
+        if (pos === id) return currentPlayer;
+        return circle;
+      });
+    });
 
     setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1);
   };
@@ -32,6 +42,7 @@ const GameBoard = () => {
   const renderCircle = (id) => {
     return (
       <GameCircle
+        key={id}
         id={id}
         className={`player_${gameBoard[id]}`}
         onCircleClicked={circleClicked}
@@ -39,7 +50,7 @@ const GameBoard = () => {
     );
   };
 
-  return <div className="gameBoard">{renderBlock()}</div>;
+  return <div className="gameBoard">{renderBoard()}</div>;
 };
 
 export default GameBoard;
