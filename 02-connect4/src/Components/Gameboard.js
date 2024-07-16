@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GameCircle from "./GameCircle";
 import "../Game.css";
+import { Header, Footer } from "./Header";
 
 const NO_CIRCLES = 16;
 
@@ -50,7 +51,13 @@ const GameBoard = () => {
     );
   };
 
-  return <div className="gameBoard">{renderBoard()}</div>;
+  return (
+    <div className="app-container center-container">
+      <Header />
+      <div className="gameBoard ">{renderBoard()}</div>
+      <Footer />
+    </div>
+  );
 };
 
 export default GameBoard;

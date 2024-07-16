@@ -1,11 +1,62 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.panel {
+  background-color: goldenrod;
+  border: 8px solid burlywood;
+  margin: 10px 0; /* Adds some space between panels */
+  text-align: center;
+  padding: 10px;
+}
+
+.header {
+  width: 300px;
+  height: 80px;
+}
+
 .gameBoard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  padding: 20px;
   width: 500px;
-  position: absolute;
-  left: 10%;
+  padding: 20px;
+  background-color: bisque;
+  border-radius: 8%;
+}
+
+.footer {
+  width: 300px;
+  height: 80px;
+}
+
+.footer button {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: bisque;
+  padding: 10px 25px 10px 25px;
+  border-radius: 35px;
 }
 
 .gameCircle {
@@ -16,8 +67,8 @@
   border: 2px solid black;
 }
 
-.idle {
-  background-color: yellow;
+.player_0 {
+  background-color: white;
 }
 
 .player_1 {
@@ -26,4 +77,17 @@
 
 .player_2 {
   background-color: red;
+}
+
+/* Ensure scalability */
+@media (max-width: 600px) {
+  .header,
+  .footer {
+    width: 80%;
+    height: auto;
+  }
+
+  .gameBoard {
+    width: 90%;
+  }
 }
