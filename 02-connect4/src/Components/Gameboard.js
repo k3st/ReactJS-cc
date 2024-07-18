@@ -3,6 +3,8 @@ import GameCircle from "./GameCircle";
 import "../Game.css";
 import { Header, Footer } from "./Header";
 
+import { isWinner } from "../helper";
+
 const NO_CIRCLES = 16;
 
 const NO_PLAYER = 0;
@@ -22,7 +24,6 @@ const GameBoard = () => {
     setCurrentPlayer(PLAYER_1);
   };
 
-  // console.log(gameBoard);
   const renderBoard = () => {
     const circles = [];
     for (let i = 0; i < NO_CIRCLES; i++) {
@@ -32,13 +33,19 @@ const GameBoard = () => {
   };
   const circleClicked = (id) => {
     // console.log("circle clicked: " + id);
+    console.log(gameBoard); // prints array of gameboard
+
+    if (isWinner(gameBoard, id, currentPlayer)) {
+      console.log("Winner");
+    }
+
+    // //  First Method // //
     // const board = [...gameBoard];
     // board[id] = currentPlayer;
     // setGameBoard(board);
     // setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1);
 
     // //  Second Method // //
-
     setGameBoard((prev) => {
       return prev.map((circle, pos) => {
         if (pos === id) return currentPlayer;
