@@ -24,6 +24,7 @@ export const isWinner = (gameBoard, currentMove, currentPlayer) => {
       board[c2] === board[c3] &&
       board[c3] === board[c4]
     ) {
+      console.log("WIN");
       return true;
     }
   }

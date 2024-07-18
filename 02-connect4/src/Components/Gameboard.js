@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 import GameCircle from "./GameCircle";
 import "../Game.css";
 import { Header, Footer } from "./Header";
-
+import {
+  GAME_STATE_PLAYING,
+  GAME_STATE_WIN,
+  NO_PLAYER,
+  PLAYER_1,
+  PLAYER_2,
+  NO_CIRCLES,
+} from "./Constants";
 import { isWinner } from "../helper";
-
-const NO_CIRCLES = 16;
-
-const NO_PLAYER = 0;
-const PLAYER_1 = 1;
-const PLAYER_2 = 2;
 
 const GameBoard = () => {
   const [gameBoard, setGameBoard] = useState(Array(16).fill(NO_PLAYER));
   const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
+  const [gameState, setGameState] = useState(GAME_STATE_PLAYING);
 
   useEffect(() => {
     initGame();
@@ -36,7 +38,7 @@ const GameBoard = () => {
     console.log(gameBoard); // prints array of gameboard
 
     if (isWinner(gameBoard, id, currentPlayer)) {
-      console.log("Winner");
+      setGameState(GAME_STATE_WIN);
     }
 
     // //  First Method // //
@@ -69,7 +71,7 @@ const GameBoard = () => {
 
   return (
     <div className="app-container center-container">
-      <Header player={currentPlayer} />
+      <Header gameState={gameState} player={currentPlayer} />
       <div className="gameBoard ">{renderBoard()}</div>
       <Footer onClickEvent={initGame} />
     </div>
